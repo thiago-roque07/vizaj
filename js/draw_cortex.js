@@ -52,14 +52,33 @@ function drawExtraItemCubeModel(){
     drawExtraItemModel(geometry);
 }
 
-function loadCortexModel(){
+function loadCortexModel() {
     return loadGltfModel(cortexMeshUrl, 'cortex model',
         (gltf) => {
             const hemi0Mesh = gltf.scene.children[0].children[0];
             const hemi1Mesh = gltf.scene.children[0].children[1];
-            return BufferGeometryUtils.mergeGeometries([hemi0Mesh.geometry, hemi1Mesh.geometry]);
+
+            // Merge the two hemispheres
+            const originalGeometry = BufferGeometryUtils.mergeGeometries([hemi0Mesh.geometry, hemi1Mesh.geometry]);
+            
+            // Scale down the original geometry
+            const scale = 0.6; // Adjust this value to make the model smaller or larger
+            originalGeometry.scale(scale, scale, scale);
+
+            const zOffset1 = -90; // Adjust this value as needed for the smaller scale
+            // Create a copy of the original geometry
+            const offsetGeometry = originalGeometry.clone();
+            
+            // Apply y-offset to the copy
+            const zOffset2 = 90; // Adjust this value as needed for the smaller scale
+            const yOffset = 10
+            offsetGeometry.translate(0, yOffset, zOffset2);
+            
+            // Merge the original and offset geometries
+            return BufferGeometryUtils.mergeGeometries([originalGeometry.translate(0,yOffset,zOffset1), offsetGeometry]);
     });
 }
+
 
 function loadInnerSkullModel(){
     return loadGltfModel(innerSkullMeshUrl, 'inner skull model');

@@ -27,9 +27,9 @@ const highlightedLinksPreviousMaterials = [];
 let cortexMeshUrl = require('../data/cortex_model.glb');
 let innerSkullMeshUrl = require('../data/innskull.glb');
 let scalpMeshUrl = require('../data/scalp.glb');
-let sensorLabelsUrl = require('../data/sensor_labels.csv');
-let sensorCoordinatesUrl = require('../data/sensor_coordinates.csv');
-let connectivityMatrixUrl = require('../data/connectivity_matrix.csv');
+let sensorLabelsUrl = require('../data/sensor_labels_hyp.csv');
+let sensorCoordinatesUrl = require('../data/sensor_coordinates_hyp.csv');
+let connectivityMatrixUrl = require('../data/connectivity_vizaj.csv');
 
 const GLOBAL_LAYER = 0,  LINK_LAYER = 1;
 
